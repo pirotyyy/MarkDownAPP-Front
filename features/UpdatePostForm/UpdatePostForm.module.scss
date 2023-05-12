@@ -1,0 +1,120 @@
+.wrapper {
+  width: 100%;
+  margin-top: 20px;
+  .container {
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        display: inline-block;
+        outline: none;
+        height: 48px;
+        background-color: white;
+        font-size: 32px;
+        margin-bottom: 24px;
+        border-radius: 20px;
+        padding: 5px 10px;
+        width: 100%;
+      }
+
+      .mdArea {
+        border: 2px solid grey;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        border-radius: 20px;
+        text-align: left;
+        padding: 10px;
+
+        .inputArea {
+          border: none;
+          outline: none;
+          width: 50%;
+          padding: 20px;
+          border-right: 1px solid grey;
+
+          textarea {
+            width: 100%;
+            border: none;
+            padding: 0;
+            outline: none;
+            font-size: 20px;
+            resize: none;
+            font-weight: 550;
+            height: 780px;
+            overflow-y: auto;
+            line-height: 1.6;
+            font-weight: 550;
+          }
+        }
+
+        .prevArea {
+          border: none;
+          outline: none;
+          width: 50%;
+          height: 780px;
+          line-height: 1.6;
+          overflow-y: auto;
+          padding: 20px;
+
+          .md {
+            h1 {
+              border-bottom: 2px solid grey;
+              margin-bottom: 20px;
+              font-size: 36px;
+            }
+
+            h2 {
+              border-bottom: 2px solid grey;
+              margin-bottom: 15px;
+              font-size: 30px;
+            }
+
+            h3 {
+              margin-bottom: 10px;
+              font-size: 24px;
+            }
+
+            ul,
+            ol {
+              margin: 10px 0;
+
+              li {
+                margin: 5px;
+                font-size: 20px;
+              }
+            }
+
+            p {
+              margin-bottom: 10px;
+              font-size: 20px;
+            }
+
+            img {
+              width: 600px;
+              height: 300px;
+            }
+          }
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        width: 20%;
+        border: none;
+        padding: 20px 10px;
+        font-weight: 600;
+        font-size: 20px;
+        color: white;
+        background-color: rgb(157, 140, 255);
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

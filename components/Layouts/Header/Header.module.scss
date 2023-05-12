@@ -1,0 +1,68 @@
+.wrapper {
+  width: 100vw;
+  background-color: rgb(157, 140, 255);
+  color: white;
+  .container {
+    margin: 0 15vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+
+    .left {
+      width: 50vw;
+
+      a {
+        text-decoration: none;
+        color: white;
+        .title {
+          font-size: 28px;
+          font-family: 'Roboto Slab', serif;
+        }
+      }
+    }
+
+    .right {
+      width: 50vw;
+      text-align: right;
+      display: flex;
+      align-items: center;
+
+      input {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        margin-right: 20px;
+        width: 400px;
+      }
+
+      a {
+        text-decoration: none;
+        margin-right: 10px;
+        .postButton {
+          color: white;
+          background-color: rgb(99, 90, 158);
+          padding: 10px 15px;
+          border-radius: 10px;
+          font-weight: 600;
+          width: 70px;
+        }
+      }
+
+      .logoutBtn {
+        width: 120px;
+        padding: 10px 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        border-radius: 10px;
+        background-color: rgb(99, 90, 158);
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+  }
+}

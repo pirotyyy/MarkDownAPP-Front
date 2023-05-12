@@ -1,0 +1,12 @@
+.wrapper {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .main {
+      margin: 25px;
+      width: 60vw;
+    }
+  }
+}
