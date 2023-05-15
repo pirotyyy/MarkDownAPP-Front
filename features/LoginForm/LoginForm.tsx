@@ -6,10 +6,12 @@ import { apiClient } from '@/lib/apiClient';
 import { useRouter } from 'next/router';
 import { AuthUserState } from '@/states/authUserState';
 import Link from 'next/link';
+import { ErrorMsgState } from '@/states/errorMsgState';
 
 const LoginForm = () => {
   const [loginForm, setLoginForm] = useRecoilState(LoginFormState);
   const [authUser, setAuthUser] = useRecoilState(AuthUserState);
+  const [errorMsg, setErrorMsg] = useRecoilState(ErrorMsgState);
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,9 +23,10 @@ const LoginForm = () => {
         isLogin: true,
       });
       setLoginForm({ userId: '', password: '' });
+      setErrorMsg('');
       router.push('/');
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -35,6 +38,11 @@ const LoginForm = () => {
         </div>
         <div className={styles.right}>
           <div className={styles.title}>ログイン</div>
+          {errorMsg ? (
+            <div className={styles.errorMsg}>{errorMsg}</div>
+          ) : (
+            <div></div>
+          )}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputForm}>
               <input

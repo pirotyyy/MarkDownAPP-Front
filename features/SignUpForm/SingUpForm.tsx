@@ -9,11 +9,13 @@ import { apiClient } from '@/lib/apiClient';
 import { ImageSrcState } from '@/states/imageSrcState';
 import { ImageState } from '@/states/imageState';
 import Link from 'next/link';
+import { ErrorMsgState } from '@/states/errorMsgState';
 
 const SignUpForm = () => {
   const [signUpForm, setSignUpForm] = useRecoilState(SignUpFormState);
   const [image, setImage] = useRecoilState(ImageState);
   const [imageSrc, setImageSrc] = useRecoilState(ImageSrcState);
+  const [errorMsg, setErrorMsg] = useRecoilState(ErrorMsgState);
   const router = useRouter();
 
   const handleOnChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +29,7 @@ const SignUpForm = () => {
     try {
       const imageUrl = await uploadImage(imageFile);
       setSignUpForm({ ...signUpForm, profileImg: imageUrl });
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     }
   };
@@ -51,7 +53,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(signUpForm);
     try {
       await apiClient.post('user', signUpForm);
       setSignUpForm({
@@ -61,9 +62,11 @@ const SignUpForm = () => {
         password: '',
         profileImg: '',
       });
+      setErrorMsg('');
       router.push('/login');
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error.response.data.message);
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -75,6 +78,11 @@ const SignUpForm = () => {
         </div>
         <div className={styles.right}>
           <div className={styles.title}>サインアップ</div>
+          {errorMsg ? (
+            <div className={styles.errorMsg}>{errorMsg}</div>
+          ) : (
+            <div></div>
+          )}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputForm}>
               {imageSrc ? (
