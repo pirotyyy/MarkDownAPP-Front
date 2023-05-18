@@ -84,7 +84,7 @@ const CreatePostForm = () => {
           <div className={styles.mdArea}>
             <div className={styles.inputArea}>
               <div className={styles.optionList}>
-                <label htmlFor='image'>
+                <label htmlFor='image' className={styles.image}>
                   <img src='/img/image.png' alt='' className={styles.icon} />
                 </label>
               </div>

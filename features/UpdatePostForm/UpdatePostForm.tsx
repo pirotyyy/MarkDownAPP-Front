@@ -24,6 +24,36 @@ const UpdatePostForm = () => {
     }
   };
 
+  const handleOnChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const imageFile = e.target.files![0];
+
+    try {
+      const imageUrl = await uploadImage(imageFile);
+      const tmpContent = updatePost.content;
+      const newContent = `${tmpContent}\n ![${imageFile.name}](${imageUrl})\n`;
+      setUpdatePost({ ...updatePost, content: newContent });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const uploadImage = async (image: File) => {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    try {
+      // profimage upload
+      const response = await apiClient.post('image/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data; charset=utf-8' },
+      });
+
+      const imageUrl = response.data;
+      return imageUrl;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -39,6 +69,18 @@ const UpdatePostForm = () => {
           />
           <div className={styles.mdArea}>
             <div className={styles.inputArea}>
+              <div className={styles.optionList}>
+                <label htmlFor='image' className={styles.image}>
+                  <img src='/img/image.png' alt='' className={styles.icon} />
+                </label>
+              </div>
+              <input
+                id='image'
+                type='file'
+                name='image'
+                className={styles.imgForm}
+                onChange={handleOnChange}
+              />
               <textarea
                 value={updatePost.content}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -27,8 +27,9 @@ const Home: NextPage = () => {
       const response = await apiClient.get('md/list');
       setPostList(response.data);
     };
-    checkAuth();
-    fetchList();
+    checkAuth().then(() => {
+      fetchList();
+    });
   }, []);
 
   return (

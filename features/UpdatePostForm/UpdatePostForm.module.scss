@@ -36,6 +36,28 @@
           padding: 20px;
           border-right: 1px solid grey;
 
+          .optionList {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-bottom: 2px solid grey;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+
+            .image {
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+
+              .icon {
+                cursor: pointer;
+              }
+            }
+          }
+          .imgForm {
+            display: none;
+          }
+
           textarea {
             width: 100%;
             border: none;
